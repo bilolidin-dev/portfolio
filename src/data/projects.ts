@@ -25,7 +25,7 @@ export const projects: Project[] = [
     description:
       "Платформа учебного центра PROlab Academy (Ош, Кыргызстан): курсы программирования для начинающих (JavaScript, HTML, CSS) и онлайн-экзамены с защитой от списывания, отдельные потоки для учителей и учеников и разграничение доступа через Row Level Security в Supabase. В репозитории — экзаменационный модуль платформы.",
     tags: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "JWT", "RLS", "E2E Testing"],
-    githubUrl: "https://github.com/b4631119-oss/academy-exam",
+    githubUrl: "https://github.com/bilolidin-dev/academy",
     liveUrl: "https://www.prolab-academy.site/",
     role: "Solo Developer",
     tier: "secondary",
@@ -86,7 +86,7 @@ export const projects: Project[] = [
     description:
       "Личная система планирования: расписание дня по часам, привычки со стриками и привязка задач к долгосрочным целям. Вход через Google, все документы изолированы по владельцу в Firestore.",
     tags: ["Next.js", "TypeScript", "Firebase", "Firestore", "Tailwind CSS"],
-    githubUrl: "https://github.com/b4631119-oss/lifeOS",
+    githubUrl: "https://github.com/bilolidin-dev/lifeOS",
     liveUrl: "https://os-life-one.vercel.app/",
     role: "Solo Developer",
     tier: "secondary",
@@ -149,7 +149,7 @@ export const projects: Project[] = [
     description:
       "Интерактивное портфолио в виде рабочего стола macOS: окна с перетаскиванием и изменением размера, Dock с запуском приложений, контекстное меню и терминал на xterm.js. Данные профиля и репозиториев подтягиваются через GitHub API, анимации — на Framer Motion.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "GitHub API"],
-    githubUrl: "https://github.com/b4631119-oss/macOs-portfolio",
+    githubUrl: "https://github.com/bilolidin-dev/macOs-portfolio",
     liveUrl: "https://mac-os-portfolio-app.vercel.app/",
     role: "Solo Developer",
     tier: "secondary",
@@ -208,7 +208,7 @@ export const projects: Project[] = [
     description:
       "Веб-чат на Next.js с авторизацией Firebase и хранением сообщений в Cloud Firestore. Репозиторий также содержит правила безопасности Firestore.",
     tags: ["Next.js", "TypeScript", "Firebase", "Firestore", "Auth"],
-    githubUrl: "https://github.com/b4631119-oss/chat-app",
+    githubUrl: "https://github.com/bilolidin-dev/chat-app",
     role: "Solo Developer",
     tier: "secondary",
     localized: {
@@ -224,7 +224,7 @@ export const projects: Project[] = [
     description:
       "Кроссплатформенная десктопная утилита для передачи файлов, текста и ссылок между устройствами в одной локальной сети — без облака, аккаунтов и ручного поиска IP. Написана на C#, интерфейс — Avalonia UI.",
     tags: ["C#", ".NET", "Avalonia", "P2P", "LAN"],
-    githubUrl: "https://github.com/b4631119-oss/LocalBridge",
+    githubUrl: "https://github.com/bilolidin-dev/LocalBridge",
     role: "Solo Developer",
     tier: "secondary",
     localized: {
@@ -240,7 +240,7 @@ export const projects: Project[] = [
     description:
       "Цифровая тетрадь для заметок: страницы с автосохранением и настраиваемые обложки. Авторизация и хранение данных — Firebase и Firestore.",
     tags: ["Next.js", "TypeScript", "Firebase", "Firestore", "Auth"],
-    githubUrl: "https://github.com/b4631119-oss/cuaderno",
+    githubUrl: "https://github.com/bilolidin-dev/cuaderno",
     liveUrl: "https://cuaderno-nine.vercel.app",
     role: "Solo Developer",
     tier: "secondary",
@@ -257,8 +257,7 @@ export const projects: Project[] = [
     description:
       "Одностраничное приложение-календарь на Next.js: собственные компоненты календаря, состояние через React Context, адаптивная вёрстка на Tailwind CSS и анимации на Framer Motion.",
     tags: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    githubUrl: "https://github.com/b4631119-oss/CalendarApp",
-    liveUrl: "https://kalendar-app-one.vercel.app/",
+    githubUrl: "https://github.com/bilolidin-dev/CalendarApp",
     role: "Solo Developer",
     tier: "experiment",
     localized: {
@@ -274,7 +273,7 @@ export const projects: Project[] = [
     description:
       "Вёрстка по готовому макету (дизайн не мой): многостраничный статический сайт магазина растений — главная, каталог, блог, корзина и оформление заказа. Без фреймворков и сборки: HTML, CSS и JavaScript, адаптивная раскладка под мобильные и десктоп.",
     tags: ["HTML", "CSS", "JavaScript"],
-    githubUrl: "https://github.com/b4631119-oss/greenshop",
+    githubUrl: "https://github.com/bilolidin-dev/greenshop",
     role: "Solo Developer",
     tier: "experiment",
     localized: {
@@ -298,52 +297,6 @@ export function localizeProject(project: Project, locale: Locale): Project {
 
 export function localizeProjects(items: Project[], locale: Locale): Project[] {
   return items.map((project) => localizeProject(project, locale));
-}
-
-function repositoryIdentity(githubUrl: string): string {
-  try {
-    return new URL(githubUrl).pathname.split("/").filter(Boolean).slice(-2).join("/").toLowerCase();
-  } catch {
-    return "";
-  }
-}
-
-type PinnedRepository = { name: string; full_name?: string; html_url?: string };
-
-function pinnedRepositoryIdentity(repo: PinnedRepository): string {
-  if (repo.full_name) return repo.full_name.toLowerCase();
-  if (repo.html_url) return repositoryIdentity(repo.html_url);
-  return "";
-}
-
-export function missingProjectsForPinnedRepos(
-  pinnedRepos: PinnedRepository[]
-): string[] {
-  const projectIdentities = new Set(projects.map((project) => repositoryIdentity(project.githubUrl)));
-  return pinnedRepos
-    .filter((repo) => !projectIdentities.has(pinnedRepositoryIdentity(repo)))
-    .map((repo) => repo.full_name ?? repo.name);
-}
-
-export function projectsForPinnedRepos(
-  pinnedRepos: PinnedRepository[],
-  locale: Locale
-): Project[] {
-  const byRepository = new Map(projects.map((project) => [repositoryIdentity(project.githubUrl), project]));
-  return pinnedRepos.flatMap((repo) => {
-    const project = byRepository.get(pinnedRepositoryIdentity(repo));
-    return project ? [localizeProject(project, locale)] : [];
-  });
-}
-
-export function projectsNotPinned(
-  pinnedRepos: PinnedRepository[],
-  locale: Locale
-): Project[] {
-  const pinnedIdentities = new Set(pinnedRepos.map(pinnedRepositoryIdentity));
-  return localizeProjects(projects, locale).filter(
-    (project) => !pinnedIdentities.has(repositoryIdentity(project.githubUrl))
-  );
 }
 
 export function getProject(id: string): Project | undefined {

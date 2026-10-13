@@ -33,6 +33,10 @@
   --radius: 0.5rem;
 }
 
+/* The bare `:root` carries the light palette so the page stays readable even if
+   the `data-theme` attribute is missing (no JS, or a navigation that drops it).
+   The two attribute selectors below outrank it whenever the attribute is set. */
+:root,
 :root[data-theme="light"] {
   --bg: #fafafa;
   --bg-elevated: #ffffff;
@@ -62,6 +66,18 @@
   --input: var(--line);
   --ring: var(--accent);
   --radius: 0.5rem;
+}
+
+/* Font stacks as a fallback for documents that do not load the webfonts
+   (the standalone 404 page). Without these, `font-sans`/`font-mono` resolve to
+   an undefined var, which invalidates the whole declaration and drops the page
+   back to the browser's default serif. `next/font` overrides both values on
+   <body> wherever it is used. */
+:root {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+    monospace;
 }
 
 section[id] {

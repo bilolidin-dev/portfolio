@@ -1,22 +1,23 @@
 import type { Metadata } from "next";
+import "@/app/globals.css";
 import { notFound } from "next/navigation";
-import { defaultLocale, isLocale, locales, type Locale } from "@/i18n/config";
-import { alternatesFor, openGraphLocale } from "@/i18n/metadata";
+import { SiteShell } from "@/components/layout/SiteShell";
+import { isLocale, prefixedLocales } from "@/i18n/config";
+import { rootMetadata } from "@/i18n/metadata";
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return prefixedLocales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale: raw } = await params;
-  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
-  return { alternates: alternatesFor("/", locale), openGraph: { locale: openGraphLocale(locale) }, other: { "content-language": locale } };
+  const { locale } = await params;
+  return rootMetadata(isLocale(locale) ? locale : "en");
 }
 
 export default async function LocaleLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  return <>{children}</>;
+  return <SiteShell locale={locale}>{children}</SiteShell>;
 }

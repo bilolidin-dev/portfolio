@@ -3,10 +3,12 @@ import {
   Cpu,
   Database as DatabaseIcon,
   Globe,
+  Send,
   Server as ServerIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ArchitectureDiagram } from "@/components/ui/architecture-diagram";
+import { contact } from "@/data/contact";
 import { getDictionary, type UiDictionary } from "@/i18n";
 import { localePath } from "@/i18n/config";
 
@@ -64,7 +66,15 @@ export function HomeHero({ dictionary }: { dictionary?: UiDictionary }) {
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 pt-2">
               <Button asChild size="lg" className="shadow-none font-bold">
-                 <Link href={`${localePath("/", d.locale)}#work`}>{d.buttons.projects}</Link>
+                <a
+                  href={contact.telegram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  <Send size={18} aria-hidden="true" />
+                  {d.buttons.telegram}
+                </a>
               </Button>
               <Button
                 asChild
@@ -72,7 +82,7 @@ export function HomeHero({ dictionary }: { dictionary?: UiDictionary }) {
                 variant="outline"
                 className="font-bold"
               >
-                 <Link href={`${localePath("/", d.locale)}#contact`}>{d.buttons.contact}</Link>
+                <Link href={`${localePath("/", d.locale)}#work`}>{d.buttons.work}</Link>
               </Button>
             </div>
           </div>

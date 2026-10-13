@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+// Rendered once at build time into `out/opengraph-image` — no runtime for this route.
+export const dynamic = "force-static";
 
 export default function GET() {
   return new ImageResponse(

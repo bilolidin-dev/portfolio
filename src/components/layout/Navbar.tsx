@@ -2,41 +2,31 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { clsx } from "clsx";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import ThemeToggle from "@/components/layout/ThemeToggle";
-import { Globe } from "lucide-react";
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
+import { contact } from "@/data/contact";
 import { getDictionary } from "@/i18n";
-import { isLocale, localeFromPathname, localePath, type Locale } from "@/i18n/config";
+import { localeFromPathname, localePath } from "@/i18n/config";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const locale = localeFromPathname(pathname);
   const d = getDictionary(locale);
   const homePath = localePath("/", locale);
   const navLinks = [
     { href: `${homePath}#work`, label: d.nav.projects },
+    { href: `${homePath}#collab`, label: d.nav.collab },
     { href: `${homePath}#about`, label: d.nav.about },
     { href: `${homePath}#stack`, label: d.nav.stack },
-    { href: `${homePath}#github`, label: d.nav.github },
     { href: `${homePath}#contact`, label: d.nav.contact },
   ] as const;
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const hash = typeof window === "undefined" ? "" : window.location.hash;
-  const nextLocale: Record<Locale, Locale> = { en: "ru", ru: "uz", uz: "en" };
-  const targetLocalePath = () => {
-    const segments = pathname.split("/").filter(Boolean);
-    const routeSegments = segments[0] && isLocale(segments[0]) ? segments.slice(1) : segments;
-    const currentRoute = routeSegments.length ? `/${routeSegments.join("/")}` : "/";
-    const base = localePath(currentRoute, nextLocale[locale]);
-    const query = searchParams.toString();
-    return `${base}${query ? `?${query}` : ""}${hash}`;
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,7 +62,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-5 lg:gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -100,10 +90,12 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             {/* Desktop CTA */}
             <Button asChild size="sm" className="hidden md:inline-flex font-mono text-xs tracking-wider">
-              <Link href={`${homePath}#contact`}>{d.buttons.contact}</Link>
+              <a href={contact.telegram} target="_blank" rel="noopener noreferrer">
+                {d.buttons.write}
+              </a>
             </Button>
 
-            <Link href={targetLocalePath()} aria-label={d.nav.languageSwitch} className="inline-flex h-8 w-8 items-center justify-center text-muted hover:text-accent transition-colors"><Globe size={17} aria-hidden="true" /><span className="sr-only">{d.nav.languageSwitch}</span></Link>
+            <LanguageSwitcher locale={locale} />
             <ThemeToggle className="h-8 w-8" />
 
             {/* Mobile menu trigger */}
@@ -136,12 +128,16 @@ export default function Navbar() {
                       </SheetClose>
                     ))}
                   </nav>
-                  <div className="flex items-center justify-between pt-4 border-t border-line">
-                    <Link href={targetLocalePath()} aria-label={d.nav.languageSwitch} className="inline-flex h-10 w-10 items-center justify-center text-muted hover:text-accent transition-colors"><Globe size={17} aria-hidden="true" /><span className="sr-only">{d.nav.languageSwitch}</span></Link>
-                    <ThemeToggle className="h-10 w-10 text-muted" />
-                    <Button asChild className="w-full sm:w-auto font-mono text-sm tracking-wider">
-                      <Link href={`${homePath}#contact`}>{d.buttons.contact}</Link>
-                    </Button>
+                  <div className="flex flex-col gap-4 pt-4 border-t border-line">
+                    <LanguageSwitcher locale={locale} variant="inline" />
+                    <div className="flex items-center justify-between gap-4">
+                      <ThemeToggle className="h-10 w-10 text-muted" />
+                      <Button asChild className="w-full sm:w-auto font-mono text-sm tracking-wider">
+                        <a href={contact.telegram} target="_blank" rel="noopener noreferrer">
+                          {d.buttons.write}
+                        </a>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </SheetContent>

@@ -20,7 +20,7 @@ export default function Footer({ locale = defaultLocale }: { locale?: Locale }) 
 
           <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
             <p className="text-muted text-xs">© 2026 Bilolidin</p>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -29,9 +29,10 @@ export default function Footer({ locale = defaultLocale }: { locale?: Locale }) 
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
                   aria-label={social.label}
-                  className="text-muted hover:text-accent transition-colors"
+                  className="inline-flex items-center gap-2 font-mono text-xs text-muted hover:text-accent transition-colors"
                 >
                   <social.icon size={16} aria-hidden="true" />
+                  <span>{social.label}</span>
                 </a>
               ))}
             </div>

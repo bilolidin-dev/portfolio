@@ -1,39 +1,15 @@
-import { getGithubData } from "@/lib/github";
-import { getDictionary } from "@/i18n";
-import { defaultLocale, isLocale, type Locale } from "@/i18n/config";
 import type { Metadata } from "next";
-import { alternatesFor, socialMetadata } from "@/i18n/metadata";
-import { HomeHero } from "@/components/home/HomeHero";
-import { HomeAbout } from "@/components/home/HomeAbout";
-import { HomePrinciples } from "@/components/home/HomePrinciples";
-import { HomeExperience } from "@/components/home/HomeExperience";
-import { HomeStack } from "@/components/home/HomeStack";
-import { HomeGithub } from "@/components/home/HomeGithub";
-import { HomeContact } from "@/components/home/HomeContact";
+import HomeView, { getMetadata } from "@/views/HomeView";
+import { resolveLocale } from "@/i18n/config";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale: raw } = await params;
-  const locale: Locale = isLocale(raw) ? raw : defaultLocale;
-  const d = getDictionary(locale);
-  const title = `Bilolidin — ${d.home.heroTitle}`;
-  return { title, description: d.home.heroDescription, alternates: alternatesFor("/", locale), ...socialMetadata("/", locale, title, d.home.heroDescription) };
+type Props = { params: Promise<{ locale: string }> };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params;
+  return getMetadata(resolveLocale(locale));
 }
 
-export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: rawLocale } = await params;
-  const locale: Locale = isLocale(rawLocale) ? rawLocale : defaultLocale;
-  const dictionary = getDictionary(locale);
-  const { pinnedRepos, languageStats, recentRepos } = await getGithubData();
-
-  return (
-    <div className="max-w-7xl mx-auto px-4 md:px-6 pb-24 font-sans">
-      <HomeHero dictionary={dictionary} />
-      <HomeStack dictionary={dictionary} />
-      <HomePrinciples dictionary={dictionary} />
-      <HomeAbout dictionary={dictionary} />
-      <HomeExperience dictionary={dictionary} />
-      <HomeGithub pinnedRepos={pinnedRepos} languageStats={languageStats} recentRepos={recentRepos} dictionary={dictionary} />
-      <HomeContact dictionary={dictionary} />
-    </div>
-  );
+export default async function Page({ params }: Props) {
+  const { locale } = await params;
+  return <HomeView locale={resolveLocale(locale)} />;
 }

@@ -4,8 +4,10 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useSyncExternalStore,
 } from "react";
+import { usePathname } from "next/navigation";
 
 type ThemeMode = "light" | "dark";
 
@@ -89,6 +91,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const setMode = useCallback((next: ThemeMode) => {
     themeStore.apply(next);
   }, []);
+
+  const pathname = usePathname();
+
+  // React owns the root <html> element, so a client-side navigation can
+  // reconcile the imperatively-set `data-theme` attribute away — which would
+  // leave the theme variables unresolved. Re-assert the store's value on every
+  // route change; the inline head script does the same before first paint.
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", themeStore.getMode());
+  }, [pathname]);
 
   return (
     <ThemeContext.Provider value={{ mode, resolved, setMode }}>

@@ -2,19 +2,23 @@ export interface UiDictionary {
   locale: "ru" | "en" | "uz";
   nav: {
     projects: string;
+    collab: string;
     about: string;
     stack: string;
-    github: string;
     contact: string;
     home: string;
     primary: string;
     mobile: string;
     openMenu: string;
     closeMenu: string;
+    language: string;
     languageSwitch: string;
   };
   buttons: {
     contact: string;
+    telegram: string;
+    write: string;
+    work: string;
     projects: string;
     details: string;
     caseStudy: string;
@@ -22,10 +26,8 @@ export interface UiDictionary {
     code: string;
     back: string;
     backToProjects: string;
-    profile: string;
     retry: string;
     returnHome: string;
-    readme: string;
     close: string;
   };
   home: {
@@ -48,17 +50,11 @@ export interface UiDictionary {
     experienceDescription: string;
     stackTitle: string;
     principlesTitle: string;
-    githubTitle: string;
-    pinned: string;
-    languages: string;
-    languageChart: string;
-    recent: string;
-    githubError: string;
+    collabTitle: string;
     contactTitle: string;
     contactDescription: string;
     roleLabel: string;
     architectureNodes: { frontend: string; api: string; backend: string; database: string };
-    relativeJustNow: string;
   };
   pages: {
     aboutTitle: string;
@@ -68,12 +64,6 @@ export interface UiDictionary {
     projectsDescription: string;
     contactTitle: string;
     contactDescription: string;
-    profileTitle: string;
-    profileDescription: string;
-    profileError: string;
-    repositories: string;
-    openGithub: string;
-    stats: [string, string, string];
   };
   project: {
     overview: string;
@@ -90,26 +80,14 @@ export interface UiDictionary {
     notFoundDescription: string;
     errorTitle: string;
     errorDescription: string;
-    noResults: string;
-    noReadme: string;
-    readmeError: string;
-    sort: string;
-    all: string;
-    sortStars: string;
-    sortUpdated: string;
-    sortName: string;
   };
   aria: {
     themeLight: string;
     themeDark: string;
     mainNav: string;
     mobileNav: string;
-    languageChart: string;
-    sortRepositories: string;
-    showReadme: (name: string) => string;
-    readmeOf: (name?: string) => string;
-    avatarOf: (name: string) => string;
   };
+  collab: Array<{ title: string; description: string }>;
   principles: Array<{ title: string; description: string }>;
   techGroups: string[];
 }

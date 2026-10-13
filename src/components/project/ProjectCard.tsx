@@ -105,16 +105,18 @@ export function ProjectCard({ project, variant, dictionary }: ProjectCardProps) 
                 </a>
               </Button>
             )}
-            <Button asChild size="lg" variant="outline" className="font-bold">
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github size={18} className="mr-2" aria-hidden="true" />
-                {d.buttons.code}
-              </a>
-            </Button>
+            {project.githubUrl && (
+              <Button asChild size="lg" variant="outline" className="font-bold">
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github size={18} className="mr-2" aria-hidden="true" />
+                  {d.buttons.code}
+                </a>
+              </Button>
+            )}
           </div>
         </div>
       </article>
@@ -196,16 +198,18 @@ export function ProjectCard({ project, variant, dictionary }: ProjectCardProps) 
               </a>
             </Button>
           )}
-          <Button asChild variant="outline" size="sm" className="font-mono text-xs">
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github size={12} className="mr-1.5" aria-hidden="true" />
-              {d.buttons.code}
-            </a>
-          </Button>
+          {project.githubUrl && (
+            <Button asChild variant="outline" size="sm" className="font-mono text-xs">
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github size={12} className="mr-1.5" aria-hidden="true" />
+                {d.buttons.code}
+              </a>
+            </Button>
+          )}
         </div>
       </div>
     </article>

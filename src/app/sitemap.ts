@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
 import { projects } from "@/data/projects";
+
+// Emitted once at build time into `out/sitemap.xml`.
+export const dynamic = "force-static";
 import { siteUrl } from "@/data/site";
 import { defaultLocale, localePath, locales, type Locale } from "@/i18n/config";
 
@@ -30,7 +33,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ["/", 1, "weekly"],
     ["/about", 0.8, "monthly"],
     ["/projects", 0.9, "weekly"],
-    ["/profile", 0.8, "daily"],
     ["/contact", 0.7, "monthly"],
   ] as const;
   const pathsWithProjects = [

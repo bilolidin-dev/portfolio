@@ -15,19 +15,9 @@ export function HomeContact({ dictionary }: { dictionary?: UiDictionary }) {
         <p className="mt-6 text-lg text-muted max-w-xl mx-auto leading-relaxed whitespace-pre-line">
           {d.home.contactDescription}
         </p>
+        {/* Primary ways to reach out first, social profiles after. */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <Button asChild variant="outline" size="lg" className="font-bold">
-            <a
-              href={contact.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2"
-            >
-              <Github size={18} aria-hidden="true" />
-              GitHub
-            </a>
-          </Button>
-          <Button asChild variant="outline" size="lg" className="font-bold">
+          <Button asChild size="lg" className="shadow-none font-bold">
             <a
               href={contact.telegram}
               target="_blank"
@@ -35,21 +25,10 @@ export function HomeContact({ dictionary }: { dictionary?: UiDictionary }) {
               className="flex items-center gap-2"
             >
               <Send size={18} aria-hidden="true" />
-              Telegram
+              {d.buttons.telegram}
             </a>
           </Button>
           <Button asChild variant="outline" size="lg" className="font-bold">
-            <a
-              href={contact.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2"
-            >
-              <Instagram size={18} aria-hidden="true" />
-              Instagram
-            </a>
-          </Button>
-          <Button asChild size="lg" className="shadow-none font-bold">
             <a
               href={mailtoHref}
               className="flex items-center gap-2"
@@ -58,6 +37,26 @@ export function HomeContact({ dictionary }: { dictionary?: UiDictionary }) {
               {contact.email}
             </a>
           </Button>
+        </div>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+          <a
+            href={contact.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-sm text-muted hover:text-accent transition-colors"
+          >
+            <Instagram size={16} aria-hidden="true" />
+            Instagram
+          </a>
+          <a
+            href={contact.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-sm text-muted hover:text-accent transition-colors"
+          >
+            <Github size={16} aria-hidden="true" />
+            GitHub
+          </a>
         </div>
       </div>
     </section>

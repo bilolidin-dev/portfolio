@@ -52,7 +52,8 @@ export interface Project {
   title: string;
   description: string;
   tags: string[];
-  githubUrl: string;
+  /** Optional: a project without a public repository renders without a Code button. */
+  githubUrl?: string;
   liveUrl?: string;
   role?: string;
   tier: ProjectTier;
