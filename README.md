@@ -249,4 +249,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 **Bilolidin** — Full-Stack Developer  
 📍 Osh, Kyrgyzstan  
-🔗 [GitHub](https://github.com/bilolidin-dev) • [Telegram](https://t.me/Teg123489) • [Email](mailto:bilolmen998@gmail.com)
+🔗 [GitHub](https://github.com/bilolidin-dev) • [Telegram](https://t.me/bilolidindev) • [Email](mailto:bilolmen998@gmail.com)

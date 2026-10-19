@@ -1,7 +1,7 @@
 export const contact = {
   email: "bilolmen998@gmail.com",
   github: "https://github.com/bilolidin-dev",
-  telegram: "https://t.me/Teg123489",
+  telegram: "https://t.me/bilolidindev",
   instagram: "https://www.instagram.com/bilolidin.dev/",
 } as const;
 

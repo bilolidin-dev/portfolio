@@ -139,7 +139,7 @@ h1 `Contact` + тот же абзац + 4 кнопки. Мета-описани�
 | Канал | Значение | Проверка |
 |---|---|---|
 | Email | `bilolmen998@gmail.com` (`mailto:` в меню, футере, на `/contact`) | формат корректен |
-| Telegram | `https://t.me/Teg123489` | 200, профиль «DevRoot / Fulstak developer» |
+| Telegram | `https://t.me/bilolidindev` | 200, профиль «DevRoot / Fulstak developer» |
 | Instagram | `https://www.instagram.com/bilolidin.dev/` | не проверял (Instagram закрывает доступ неавторизованным) |
 | GitHub | футер/контакты/JSON-LD → `https://github.com/b4631119-oss` | **404** — профиль не существует (аккаунт переименован в `bilolidin-dev`) |
 
