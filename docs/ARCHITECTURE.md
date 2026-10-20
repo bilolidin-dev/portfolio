@@ -8,6 +8,11 @@
 > переписан под секции. Фото — `public/brand/portrait.jpg` (без файла рендерится монограмма),
 > WhatsApp — `contact.whatsapp` в `src/data/contact.ts`. Разделы ниже про проекты/кейсы устарели;
 > инварианты статического экспорта актуальны.
+>
+> **Локали (20.10.2026):** `en`, `ru`, `uz` (латиница), `uz-cyrl` (кириллица, URL `/uz-cyrl`, `lang="uz-Cyrl"`), `ky`, `es`.
+> Первый визит: `LanguagePrompt` (клиент) сравнивает `navigator.languages` с локалями и предлагает язык, без редиректа;
+> выбор (принять / закрыть / меню языков) хранится в `localStorage` (`src/i18n/preference.ts`).
+> Короткие коды и BCP 47-теги — `localeShortNames` / `htmlLang` в `src/i18n/config.ts`; hreflang строится `hreflangMap()`.
 
 
 > **Статус (13.10.2026):** GitHub-интеграция (build-time REST/GraphQL клиент, `/profile`, README-модалка, браузерный `github-client`, API-роут, env `GITHUB_*`) удалена. Инварианты статического экспорта ниже по-прежнему актуальны, а разделы про GitHub — нет.

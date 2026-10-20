@@ -69,6 +69,7 @@ export const ru = {
     channels: "Или выберите удобный способ",
   },
   footer: { tagline: "Цифровые продукты для бизнеса" },
+  langPrompt: { message: "Этот сайт есть на русском языке.", accept: "Открыть на русском", dismiss: "Закрыть" },
   states: {
     loading: "Загрузка…", notFound: "Страница не найдена",
     notFoundDescription: "Похоже, этой страницы не существует или она была перемещена.",

@@ -2,10 +2,11 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { LanguagePrompt } from "@/components/layout/LanguagePrompt";
 import { themeScript } from "@/components/layout/theme-script";
 import { siteUrl } from "@/data/site";
 import { contact } from "@/data/contact";
-import type { Locale } from "@/i18n/config";
+import { htmlLang, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n";
 
 const inter = Inter({
@@ -42,7 +43,7 @@ export function SiteShell({
     description: getDictionary(locale).meta.description,
     url: siteUrl,
     email: `mailto:${contact.email}`,
-    inLanguage: locale,
+    inLanguage: htmlLang[locale],
     sameAs: [contact.instagram, contact.telegram, contact.github],
   };
 
@@ -51,11 +52,11 @@ export function SiteShell({
     "@type": "WebSite",
     name: "Bilolidin — Digital Product Developer",
     url: siteUrl,
-    inLanguage: locale,
+    inLanguage: htmlLang[locale],
   };
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={htmlLang[locale]} suppressHydrationWarning>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-bg text-ink antialiased`}>
         {/* Parser-blocking and first in the body, so the theme is on <html>
             before anything paints. Rendering them here (instead of a literal
@@ -72,6 +73,7 @@ export function SiteShell({
             <main className="flex-1 pt-16">{children}</main>
             <Footer locale={locale} />
           </div>
+          <LanguagePrompt locale={locale} />
         </ThemeProvider>
       </body>
     </html>

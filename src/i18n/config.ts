@@ -1,4 +1,4 @@
-export const locales = ["en", "ru", "uz"] as const;
+export const locales = ["en", "ru", "uz", "uz-cyrl", "ky", "es"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "en";
 
@@ -15,6 +15,29 @@ export const localeNames: Record<Locale, string> = {
   en: "English",
   ru: "Русский",
   uz: "O'zbekcha",
+  "uz-cyrl": "Ўзбекча",
+  ky: "Кыргызча",
+  es: "Español",
+};
+
+/** Short code on the language button. */
+export const localeShortNames: Record<Locale, string> = {
+  en: "EN",
+  ru: "RU",
+  uz: "UZ",
+  "uz-cyrl": "ЎЗ",
+  ky: "KY",
+  es: "ES",
+};
+
+/** BCP 47 tag for `<html lang>`, `lang=` attributes and hreflang. */
+export const htmlLang: Record<Locale, string> = {
+  en: "en",
+  ru: "ru",
+  uz: "uz",
+  "uz-cyrl": "uz-Cyrl",
+  ky: "ky",
+  es: "es",
 };
 
 export function isLocale(value: string): value is Locale {

@@ -7,8 +7,11 @@ import { clsx } from "clsx";
 import { Check, ChevronDown, Globe } from "lucide-react";
 import { SheetClose } from "@/components/ui/sheet";
 import { getDictionary } from "@/i18n";
+import { rememberLocale } from "@/i18n/preference";
 import {
+  htmlLang,
   isLocale,
+  localeShortNames,
   localeNames,
   localePath,
   locales,
@@ -18,7 +21,7 @@ import {
 /**
  * Language picker. The trigger shows the active language code and clicking it
  * lists every locale by its endonym — the reader can see at a glance that the
- * site is published in three languages instead of guessing what a lone globe
+ * site is published in several languages instead of guessing what a lone globe
  * icon does.
  *
  * `dropdown` is used in the header, `inline` inside the mobile sheet, where a
@@ -88,8 +91,9 @@ export default function LanguageSwitcher({
             <SheetClose asChild key={item}>
               <Link
                 href={hrefFor(item)}
+                onClick={() => rememberLocale(item)}
                 aria-current={item === locale ? "true" : undefined}
-                lang={item}
+                lang={htmlLang[item]}
                 className={clsx(
                   "inline-flex items-center gap-2 rounded-[var(--radius)] border px-3 py-1.5 font-mono text-xs transition-colors",
                   item === locale
@@ -98,7 +102,7 @@ export default function LanguageSwitcher({
                 )}
               >
                 {localeNames[item]}
-                <span className="text-[10px] uppercase text-muted">{item}</span>
+                <span className="text-[10px] uppercase text-muted">{localeShortNames[item]}</span>
               </Link>
             </SheetClose>
           ))}
@@ -120,7 +124,7 @@ export default function LanguageSwitcher({
         className="inline-flex h-8 items-center gap-1 rounded px-1.5 font-mono text-xs tracking-wider text-muted hover:text-accent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
       >
         <Globe size={17} aria-hidden="true" />
-        <span className="uppercase" aria-hidden="true">{locale}</span>
+        <span className="uppercase" aria-hidden="true">{localeShortNames[locale]}</span>
         <ChevronDown
           size={12}
           aria-hidden="true"
@@ -143,8 +147,11 @@ export default function LanguageSwitcher({
               key={item}
               href={hrefFor(item)}
               role="menuitem"
-              lang={item}
-              onClick={() => setOpenAt(null)}
+              lang={htmlLang[item]}
+              onClick={() => {
+                rememberLocale(item);
+                setOpenAt(null);
+              }}
               aria-current={item === locale ? "true" : undefined}
               className={clsx(
                 "flex items-center justify-between gap-3 rounded px-3 py-2 text-sm transition-colors",
@@ -158,7 +165,7 @@ export default function LanguageSwitcher({
                 <Check size={14} className="text-accent" aria-hidden="true" />
               ) : (
                 <span className="font-mono text-[10px] uppercase text-muted" aria-hidden="true">
-                  {item}
+                  {localeShortNames[item]}
                 </span>
               )}
             </Link>

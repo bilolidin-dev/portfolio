@@ -1,7 +1,9 @@
+import type { Locale } from "@/i18n/config";
+
 type Item = { title: string; description: string };
 
 export interface UiDictionary {
-  locale: "ru" | "en" | "uz";
+  locale: Locale;
   meta: { title: string; description: string };
   nav: {
     services: string;
@@ -39,6 +41,8 @@ export interface UiDictionary {
   audience: { label: string; title: string; items: Item[] };
   contact: { label: string; title: string; description: string; channels: string };
   footer: { tagline: string };
+  /** First-visit suggestion, written in the language it offers. */
+  langPrompt: { message: string; accept: string; dismiss: string };
   states: {
     loading: string;
     notFound: string;

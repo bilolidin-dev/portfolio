@@ -3,7 +3,8 @@ import type { MetadataRoute } from "next";
 // Emitted once at build time into `out/sitemap.xml`.
 export const dynamic = "force-static";
 import { siteUrl } from "@/data/site";
-import { defaultLocale, localePath, locales, type Locale } from "@/i18n/config";
+import { localePath, locales, type Locale } from "@/i18n/config";
+import { hreflangMap } from "@/i18n/metadata";
 
 function entry(
   path: string,
@@ -16,14 +17,7 @@ function entry(
     lastModified: new Date(),
     changeFrequency,
     priority,
-    alternates: {
-      languages: {
-        ru: `${siteUrl}${localePath(path, "ru")}`,
-        en: `${siteUrl}${localePath(path, "en")}`,
-        uz: `${siteUrl}${localePath(path, "uz")}`,
-        "x-default": `${siteUrl}${localePath(path, defaultLocale)}`,
-      },
-    },
+    alternates: { languages: hreflangMap(path) },
   };
 }
 

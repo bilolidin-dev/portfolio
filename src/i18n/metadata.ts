@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import { siteUrl } from "@/data/site";
-import { localePath, locales, type Locale } from "@/i18n/config";
+import { htmlLang, localePath, locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n";
 
 export { localePath };
 
 export function openGraphLocale(locale: Locale): string {
-  return { en: "en_US", ru: "ru_RU", uz: "uz_UZ" }[locale];
+  return { en: "en_US", ru: "ru_RU", uz: "uz_UZ", "uz-cyrl": "uz_UZ", ky: "ky_KG", es: "es_ES" }[locale];
+}
+
+/** Open Graph locales of the other languages (both Uzbek scripts share uz_UZ). */
+function alternateOgLocales(locale: Locale): string[] {
+  const own = openGraphLocale(locale);
+  return [...new Set(locales.map(openGraphLocale))].filter((item) => item !== own);
 }
 
 /** Root-layout metadata shared by the prefix-free default locale and the `/{locale}` trees. */
@@ -35,7 +41,7 @@ export function rootMetadata(locale: Locale): Metadata {
       url: siteUrl,
       siteName: "Bilolidin",
       locale: openGraphLocale(locale),
-      alternateLocale: locales.filter((item) => item !== locale).map(openGraphLocale),
+      alternateLocale: alternateOgLocales(locale),
       images: [
         {
           url: "/opengraph-image",
@@ -58,12 +64,7 @@ export function rootMetadata(locale: Locale): Metadata {
 export function alternatesFor(path: string, locale: Locale) {
   return {
     canonical: localePath(path, locale),
-    languages: {
-      ru: `${siteUrl}${localePath(path, "ru")}`,
-      en: `${siteUrl}${localePath(path, "en")}`,
-      uz: `${siteUrl}${localePath(path, "uz")}`,
-      "x-default": `${siteUrl}${path}`,
-    },
+    languages: hreflangMap(path),
   };
 }
 
@@ -77,9 +78,17 @@ export function socialMetadata(path: string, locale: Locale, title: string, desc
       description,
       url,
       locale: ogLocale,
-      alternateLocale: locales.filter((item) => item !== locale).map(openGraphLocale),
+      alternateLocale: alternateOgLocales(locale),
       images: [{ url: image, alt: title }],
     },
     twitter: { card: "summary_large_image" as const, title, description, images: [image] },
+  };
+}
+
+/** hreflang → absolute URL for every locale, plus `x-default`. */
+export function hreflangMap(path: string): Record<string, string> {
+  return {
+    ...Object.fromEntries(locales.map((locale) => [htmlLang[locale], `${siteUrl}${localePath(path, locale)}`])),
+    "x-default": `${siteUrl}${path}`,
   };
 }

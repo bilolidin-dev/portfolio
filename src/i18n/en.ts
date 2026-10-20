@@ -69,6 +69,7 @@ export const en = {
     channels: "Or pick the channel you prefer",
   },
   footer: { tagline: "Digital products for business" },
+  langPrompt: { message: "This site is also available in English.", accept: "Switch to English", dismiss: "Dismiss" },
   states: {
     loading: "Loading…", notFound: "Page not found",
     notFoundDescription: "This page may not exist or may have been moved.",

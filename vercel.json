@@ -62,12 +62,12 @@
       "permanent": true
     },
     {
-      "source": "/:locale(ru|uz)/:page(about|contact|profile|projects)",
+      "source": "/:locale(ru|uz|uz-cyrl|ky|es)/:page(about|contact|profile|projects)",
       "destination": "/:locale",
       "permanent": true
     },
     {
-      "source": "/:locale(ru|uz)/projects/:path*",
+      "source": "/:locale(ru|uz|uz-cyrl|ky|es)/projects/:path*",
       "destination": "/:locale",
       "permanent": true
     },

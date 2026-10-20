@@ -69,6 +69,7 @@ export const uz = {
     channels: "Yoki qulay usulni tanlang",
   },
   footer: { tagline: "Biznes uchun raqamli mahsulotlar" },
+  langPrompt: { message: "Bu sayt o'zbek tilida ham mavjud.", accept: "O'zbekchada ochish", dismiss: "Yopish" },
   states: {
     loading: "Yuklanmoqda…", notFound: "Sahifa topilmadi",
     notFoundDescription: "Bu sahifa mavjud emas yoki boshqa joyga ko'chirilgan.",
