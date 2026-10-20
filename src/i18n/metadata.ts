@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { siteUrl } from "@/data/site";
 import { localePath, locales, type Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n";
 
 export { localePath };
 
@@ -8,12 +9,9 @@ export function openGraphLocale(locale: Locale): string {
   return { en: "en_US", ru: "ru_RU", uz: "uz_UZ" }[locale];
 }
 
-const siteTitle = "Bilolidin — Full-Stack Developer";
-const siteDescription =
-  "Full-stack разработчик из Кыргызстана: платформа онлайн-экзаменов, система планирования дня и десктопная утилита для локальной сети. React, Next.js, TypeScript, Firebase, Supabase.";
-
 /** Root-layout metadata shared by the prefix-free default locale and the `/{locale}` trees. */
 export function rootMetadata(locale: Locale): Metadata {
+  const { title: siteTitle, description: siteDescription } = getDictionary(locale).meta;
   return {
     title: {
       default: siteTitle,

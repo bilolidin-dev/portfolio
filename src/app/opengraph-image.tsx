@@ -10,64 +10,30 @@ export default function GET() {
         style={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "space-between",
           width: "100%",
           height: "100%",
-          backgroundColor: "#0a0a0c",
+          backgroundColor: "#0a0d14",
+          color: "#f2f4f8",
           fontFamily: "system-ui, sans-serif",
-          padding: 80,
-          boxSizing: "border-box",
+          padding: 88,
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: 16,
-          }}
-        >
-          <span
-            style={{
-              fontSize: 56,
-              fontWeight: 700,
-              color: "#5b8dff",
-              lineHeight: 1,
-              fontFamily: "JetBrains Mono, ui-monospace, monospace",
-              letterSpacing: "0.1em",
-            }}
-          >
-            B I L O L I D I N
+        <div style={{ display: "flex", alignItems: "center", gap: 16, fontSize: 26, color: "#8a93a6" }}>
+          <div style={{ width: 48, height: 2, backgroundColor: "#7aa2ff" }} />
+          Digital Product Developer
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
+          <span style={{ fontSize: 168, fontWeight: 700, letterSpacing: "-0.05em", lineHeight: 0.9 }}>
+            Bilolidin
           </span>
-          <span
-            style={{
-              fontSize: 36,
-              fontWeight: 400,
-              color: "#f5f5f7",
-              lineHeight: 1.2,
-              fontFamily: "Inter, system-ui, sans-serif",
-              opacity: 0.9,
-            }}
-          >
-            Full-Stack Developer
+          <span style={{ fontSize: 40, color: "#c9cfdb", lineHeight: 1.25 }}>
+            I build and grow digital products for business.
           </span>
         </div>
-        <div
-          style={{
-            marginTop: 48,
-            width: "100%",
-            maxWidth: 600,
-            height: 2,
-            background: "linear-gradient(90deg, #5b8dff, #a78bfa)",
-            borderRadius: 1,
-          }}
-        />
+        <div style={{ display: "flex", fontSize: 26, color: "#8a93a6" }}>bilolidin.dev</div>
       </div>
     ),
-    {
-      width: 1200,
-      height: 630,
-    }
+    { width: 1200, height: 630 }
   );
 }

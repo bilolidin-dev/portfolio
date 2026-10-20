@@ -43,6 +43,9 @@ const extensionlessTypes = {
 const redirects = [
   { pattern: /^\/en$/, destination: "/" },
   { pattern: /^\/en(\/.*)?$/, destination: "$1" },
+  // Pages removed in the move from portfolio to personal brand site.
+  { pattern: /^(\/(?:ru|uz))\/(?:about|contact|profile|projects)(?:\/.*)?$/, destination: "$1" },
+  { pattern: /^\/(?:about|contact|profile|projects)(?:\/.*)?$/, destination: "/" },
 ];
 
 function redirectFor(pathname) {

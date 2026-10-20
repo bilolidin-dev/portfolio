@@ -1,79 +1,44 @@
+type Item = { title: string; description: string };
+
 export interface UiDictionary {
   locale: "ru" | "en" | "uz";
+  meta: { title: string; description: string };
   nav: {
-    projects: string;
-    collab: string;
+    services: string;
+    process: string;
     about: string;
-    stack: string;
     contact: string;
     home: string;
-    primary: string;
-    mobile: string;
     openMenu: string;
     closeMenu: string;
     language: string;
     languageSwitch: string;
   };
   buttons: {
-    contact: string;
-    telegram: string;
-    write: string;
-    work: string;
-    projects: string;
-    details: string;
-    caseStudy: string;
-    live: string;
-    code: string;
-    back: string;
-    backToProjects: string;
+    discuss: string;
     retry: string;
     returnHome: string;
     close: string;
   };
-  home: {
-    available: string;
-    heroTitle: string;
-    heroDescription: string;
-    heroTech: string;
-    featuredTitle: string;
-    featuredDescription: string;
-    selectedWorkEmpty: string;
-    otherTitle: string;
-    otherDescription: string;
-    aboutTitle: string;
-    aboutIntro: string;
-    aboutDetails: string;
-    experienceTitle: string;
-    experienceDate: string;
-    experienceRole: string;
-    experienceType: string;
-    experienceDescription: string;
-    stackTitle: string;
-    principlesTitle: string;
-    collabTitle: string;
-    contactTitle: string;
-    contactDescription: string;
-    roleLabel: string;
-    architectureNodes: { frontend: string; api: string; backend: string; database: string };
+  hero: {
+    role: string;
+    statement: string;
+    description: string;
+    credibility: string;
   };
-  pages: {
-    aboutTitle: string;
-    aboutDescription: string;
-    stack: string;
-    projectsTitle: string;
-    projectsDescription: string;
-    contactTitle: string;
-    contactDescription: string;
+  services: { label: string; title: string; items: Item[] };
+  process: { label: string; title: string; steps: Item[] };
+  about: {
+    label: string;
+    title: string;
+    lead: string;
+    body: string;
+    location: string;
+    values: Item[];
   };
-  project: {
-    overview: string;
-    problem: string;
-    scope: string;
-    features: string;
-    architecture: string;
-    decisions: string;
-    limitations: string;
-  };
+  audience: { label: string; title: string; items: Item[] };
+  contact: { label: string; title: string; description: string; channels: string };
+  footer: { tagline: string };
   states: {
     loading: string;
     notFound: string;
@@ -86,8 +51,6 @@ export interface UiDictionary {
     themeDark: string;
     mainNav: string;
     mobileNav: string;
+    portrait: string;
   };
-  collab: Array<{ title: string; description: string }>;
-  principles: Array<{ title: string; description: string }>;
-  techGroups: string[];
 }

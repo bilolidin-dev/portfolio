@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { projects } from "@/data/projects";
 
 // Emitted once at build time into `out/sitemap.xml`.
 export const dynamic = "force-static";
@@ -29,18 +28,6 @@ function entry(
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = [
-    ["/", 1, "weekly"],
-    ["/about", 0.8, "monthly"],
-    ["/projects", 0.9, "weekly"],
-    ["/contact", 0.7, "monthly"],
-  ] as const;
-  const pathsWithProjects = [
-    ...paths,
-    ...projects.map((project) => [`/projects/${project.id}`, 0.7, "monthly"] as const),
-  ];
-
-  return pathsWithProjects.flatMap(([path, priority, frequency]) =>
-    locales.map((locale) => entry(path, locale, priority, frequency))
-  );
+  // One-page site: the home page in every locale.
+  return locales.map((locale) => entry("/", locale, 1, "monthly"));
 }

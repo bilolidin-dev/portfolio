@@ -3,30 +3,83 @@
   "headers": [
     {
       "source": "/icon",
-      "headers": [{ "key": "Content-Type", "value": "image/png" }]
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/png"
+        }
+      ]
     },
     {
       "source": "/opengraph-image",
-      "headers": [{ "key": "Content-Type", "value": "image/png" }]
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "image/png"
+        }
+      ]
     },
     {
       "source": "/_next/static/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
       ]
     }
   ],
   "redirects": [
-    { "source": "/en", "destination": "/", "permanent": true },
-    { "source": "/en/:path*", "destination": "/:path*", "permanent": true }
+    {
+      "source": "/en",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/:path*",
+      "destination": "/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:locale(ru|uz)/:page(about|contact|profile|projects)",
+      "destination": "/:locale",
+      "permanent": true
+    },
+    {
+      "source": "/:locale(ru|uz)/projects/:path*",
+      "destination": "/:locale",
+      "permanent": true
+    },
+    {
+      "source": "/:page(about|contact|projects|profile)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/projects/:path*",
+      "destination": "/",
+      "permanent": true
+    }
   ]
 }

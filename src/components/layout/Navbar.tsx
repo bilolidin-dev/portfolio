@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { clsx } from "clsx";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import ThemeToggle from "@/components/layout/ThemeToggle";
 import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
@@ -19,10 +18,9 @@ export default function Navbar() {
   const d = getDictionary(locale);
   const homePath = localePath("/", locale);
   const navLinks = [
-    { href: `${homePath}#work`, label: d.nav.projects },
-    { href: `${homePath}#collab`, label: d.nav.collab },
+    { href: `${homePath}#services`, label: d.nav.services },
+    { href: `${homePath}#process`, label: d.nav.process },
     { href: `${homePath}#about`, label: d.nav.about },
-    { href: `${homePath}#stack`, label: d.nav.stack },
     { href: `${homePath}#contact`, label: d.nav.contact },
   ] as const;
   const [scrolled, setScrolled] = useState(false);
@@ -55,10 +53,10 @@ export default function Navbar() {
           {/* Wordmark */}
           <Link
             href={homePath}
-            className="font-mono text-sm tracking-widest text-ink hover:opacity-80 transition-opacity"
+            className="text-[15px] font-semibold tracking-tight text-ink hover:opacity-80 transition-opacity"
             aria-label={d.nav.home}
           >
-            BILOLIDIN
+            bilolidin<span className="text-muted">.dev</span>
           </Link>
 
           {/* Desktop nav links */}
@@ -68,7 +66,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={clsx(
-                  "font-mono text-xs tracking-wider transition-colors relative",
+                  "text-sm transition-colors relative",
                   isActive(link.href)
                     ? "text-ink"
                     : "text-muted hover:text-ink"
@@ -89,11 +87,14 @@ export default function Navbar() {
           {/* Right side: CTA + ThemeToggle */}
           <div className="flex items-center gap-3">
             {/* Desktop CTA */}
-            <Button asChild size="sm" className="hidden md:inline-flex font-mono text-xs tracking-wider">
-              <a href={contact.telegram} target="_blank" rel="noopener noreferrer">
-                {d.buttons.write}
-              </a>
-            </Button>
+            <a
+              href={contact.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:inline-flex h-9 items-center rounded-full bg-ink px-4 text-xs font-semibold text-bg transition-opacity hover:opacity-90"
+            >
+              {d.buttons.discuss}
+            </a>
 
             <LanguageSwitcher locale={locale} />
             <ThemeToggle className="h-8 w-8" />
@@ -119,7 +120,7 @@ export default function Navbar() {
                         <Link
                           href={link.href}
                           className={clsx(
-                            "font-mono text-lg tracking-wider transition-colors",
+                            "text-2xl font-semibold tracking-tight transition-colors",
                             isActive(link.href) ? "text-ink" : "text-muted hover:text-ink"
                           )}
                         >
@@ -132,11 +133,16 @@ export default function Navbar() {
                     <LanguageSwitcher locale={locale} variant="inline" />
                     <div className="flex items-center justify-between gap-4">
                       <ThemeToggle className="h-10 w-10 text-muted" />
-                      <Button asChild className="w-full sm:w-auto font-mono text-sm tracking-wider">
-                        <a href={contact.telegram} target="_blank" rel="noopener noreferrer">
-                          {d.buttons.write}
+                      <SheetClose asChild>
+                        <a
+                          href={contact.telegram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex h-11 flex-1 items-center justify-center rounded-full bg-ink px-5 text-sm font-semibold text-bg"
+                        >
+                          {d.buttons.discuss}
                         </a>
-                      </Button>
+                      </SheetClose>
                     </div>
                   </div>
                 </div>

@@ -13,7 +13,7 @@ export default function GET() {
           justifyContent: "center",
           width: "100%",
           height: "100%",
-          backgroundColor: "#0a0a0c",
+          backgroundColor: "#0a0d14",
           fontFamily: "system-ui, sans-serif",
         }}
       >
@@ -30,9 +30,9 @@ export default function GET() {
             style={{
               fontSize: 140,
               fontWeight: 700,
-              color: "#5b8dff",
+              color: "#f2f4f8",
               lineHeight: 1,
-              fontFamily: "JetBrains Mono, ui-monospace, monospace",
+              fontFamily: "system-ui, sans-serif",
             }}
           >
             B

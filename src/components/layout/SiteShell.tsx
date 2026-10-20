@@ -2,11 +2,11 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { CursorGrid } from "@/components/effects/CursorGrid";
 import { themeScript } from "@/components/layout/theme-script";
 import { siteUrl } from "@/data/site";
 import { contact } from "@/data/contact";
 import type { Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -38,23 +38,25 @@ export function SiteShell({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Bilolidin",
-    jobTitle: "Full-Stack Developer",
+    jobTitle: "Digital Product Developer",
+    description: getDictionary(locale).meta.description,
     url: siteUrl,
+    email: `mailto:${contact.email}`,
     inLanguage: locale,
-    sameAs: [contact.github, contact.telegram, contact.instagram],
+    sameAs: [contact.instagram, contact.telegram, contact.github],
   };
 
   const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Bilolidin — Full-Stack Developer",
+    name: "Bilolidin — Digital Product Developer",
     url: siteUrl,
     inLanguage: locale,
   };
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-bg text-ink`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-bg text-ink antialiased`}>
         {/* Parser-blocking and first in the body, so the theme is on <html>
             before anything paints. Rendering them here (instead of a literal
             <head>) keeps the document valid and avoids duplicating Next's own
@@ -65,7 +67,6 @@ export function SiteShell({
           dangerouslySetInnerHTML={{ __html: JSON.stringify([personSchema, webSiteSchema]) }}
         />
         <ThemeProvider>
-          <CursorGrid />
           <div className="flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-1 pt-16">{children}</main>

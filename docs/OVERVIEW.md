@@ -1,5 +1,15 @@
 # Bilolidin Portfolio — полное описание проекта
 
+> **Статус (20.10.2026): смена концепции.** Сайт больше не портфолио, а одностраничная digital-визитка
+> (см. [`BRAND.md`](BRAND.md)). Удалены `/about`, `/contact`, `/projects/**`, `src/data/projects.ts`,
+> `src/data/home.ts`, `src/types`, карточки/кейсы, `CursorGrid`, `architecture-diagram`. Старые URL →
+> 301 на главную (`vercel.json` + `scripts/serve.mjs`). Главная = `src/views/HomeView.tsx` + секции в
+> `src/components/home/*`, общие примитивы — `src/components/brand/*`. Словарь (`src/i18n/types.ts`)
+> переписан под секции. Фото — `public/brand/portrait.jpg` (без файла рендерится монограмма),
+> WhatsApp — `contact.whatsapp` в `src/data/contact.ts`. Разделы ниже про проекты/кейсы устарели;
+> инварианты статического экспорта актуальны.
+
+
 > **Статус (13.10.2026):** GitHub-интеграция удалена из сайта — секция GitHub на главной, страница `/profile`, README-модалка с фильтрами, браузерный fetch README, API-роут `/api/readme` и переменные `GITHUB_USERNAME` / `GITHUB_TOKEN`. Разделы ниже, которые их описывают, — исторический контекст; источник правды по контенту: `src/data/projects.ts`, `src/data/contact.ts` и [README.md](../README.md).
 
 Документ для человека, который никогда не слышал об этом проекте: что это, как выглядит, как работает и как устроено внутри. Технические детали реализации — в [ARCHITECTURE.md](ARCHITECTURE.md).

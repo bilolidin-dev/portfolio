@@ -1,42 +1,36 @@
-import { Github, Instagram, Mail, Send } from "lucide-react";
-import { contact, mailtoHref } from "@/data/contact";
-import { getDictionary, type UiDictionary } from "@/i18n";
+import { channels } from "@/data/contact";
+import { getDictionary } from "@/i18n";
 import { defaultLocale, type Locale } from "@/i18n/config";
 
 export default function Footer({ locale = defaultLocale }: { locale?: Locale }) {
-  const d: UiDictionary = getDictionary(locale);
-  const socialLinks = [{ href: contact.github, label: "GitHub", icon: Github, external: true }, { href: contact.telegram, label: "Telegram", icon: Send, external: true }, { href: contact.instagram, label: "Instagram", icon: Instagram, external: true }, { href: mailtoHref, label: "Email", icon: Mail, external: false }] as const;
+  const d = getDictionary(locale);
   return (
-    <footer className="border-t border-line bg-bg" role="contentinfo">
-      <div className="mx-auto max-w-7xl px-4 md:px-6 py-10 md:py-16">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div className="flex flex-col gap-2">
-            <span className="font-mono text-sm text-ink">BILOLIDIN</span>
-            <span className="text-muted text-xs">{d.home.heroTitle}</span>
-            <span className="font-mono text-xs text-muted">
-              React · Next.js · TypeScript · Python · Django
-            </span>
-          </div>
-
-          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
-            <p className="text-muted text-xs">© 2026 Bilolidin</p>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-              {socialLinks.map((social) => (
+    <footer className="border-t border-line" role="contentinfo">
+      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-10 md:flex-row md:items-end md:justify-between md:px-8">
+        <div className="space-y-1">
+          <p className="text-[15px] font-semibold tracking-tight text-ink">
+            bilolidin<span className="text-muted">.dev</span>
+          </p>
+          <p className="text-sm text-muted">
+            Digital Product Developer · {d.footer.tagline}
+          </p>
+        </div>
+        <div className="flex flex-col gap-4 md:items-end">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
+            {channels.map((channel) => (
+              <li key={channel.id}>
                 <a
-                  key={social.label}
-                  href={social.href}
-                  {...(social.external
-                    ? { target: "_blank", rel: "noopener noreferrer" }
-                    : {})}
-                  aria-label={social.label}
-                  className="inline-flex items-center gap-2 font-mono text-xs text-muted hover:text-accent transition-colors"
+                  href={channel.href}
+                  {...(channel.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-ink"
                 >
-                  <social.icon size={16} aria-hidden="true" />
-                  <span>{social.label}</span>
+                  <channel.icon size={14} aria-hidden="true" />
+                  {channel.label}
                 </a>
-              ))}
-            </div>
-          </div>
+              </li>
+            ))}
+          </ul>
+          <p className="font-mono text-xs text-muted">© {new Date().getFullYear()} Bilolidin</p>
         </div>
       </div>
     </footer>
