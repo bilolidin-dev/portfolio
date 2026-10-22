@@ -39,6 +39,7 @@ export interface UiDictionary {
     values: Item[];
   };
   audience: { label: string; title: string; items: Item[] };
+  faq: { label: string; title: string; items: { question: string; answer: string }[] };
   contact: { label: string; title: string; description: string; channels: string };
   footer: { tagline: string };
   /** First-visit suggestion, written in the language it offers. */

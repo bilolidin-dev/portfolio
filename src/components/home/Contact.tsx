@@ -10,7 +10,7 @@ export function Contact({ d }: { d: UiDictionary }) {
       className="border-t border-line py-24 md:py-36"
     >
       <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
-        <span className="text-accent">06</span> — {d.contact.label}
+        <span className="text-accent">07</span> — {d.contact.label}
       </p>
       <h2
         id="contact-heading"

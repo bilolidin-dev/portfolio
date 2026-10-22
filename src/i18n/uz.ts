@@ -3,9 +3,9 @@ import type { UiDictionary } from "@/i18n/types";
 export const uz = {
   locale: "uz",
   meta: {
-    title: "Bilolidin — Digital Product Developer",
+    title: "Bilolidin — Qirg'izistonda saytlar, veb-servislar va avtomatlashtirish",
     description:
-      "Biznes uchun raqamli mahsulotlar yarataman va rivojlantiraman: saytlar, veb-servislar va avtomatlashtirish — g'oyadan ishga tushirishgacha.",
+      "Biznes uchun saytlar, veb-servislar va avtomatlashtirish yarataman — g'oyadan ishga tushirishgacha. O'sh, Qirg'iziston; butun dunyo bilan masofadan ishlayman.",
   },
   nav: {
     services: "Xizmatlar", process: "Jarayon", about: "Men haqimda", contact: "Aloqa",
@@ -60,6 +60,42 @@ export const uz = {
       { title: "Biznesga", description: "Ko'proq mijoz olish va kamroq vaqt sarflash uchun sayt, servis yoki avtomatlashtirish kerak bo'lsa." },
       { title: "Asoschilarga", description: "G'oya bormi — uni birinchi ishlaydigan versiyaga aylantirib, ishga tushirishga yordam beraman." },
       { title: "Kompaniyalarga", description: "Jamoangizni kuchaytiraman va mavjud mahsulotni rivojlantirishga yordam beraman." },
+    ],
+  },
+  faq: {
+    label: "Savollar",
+    title: "Ko'p beriladigan savollar",
+    items: [
+      {
+        question: "Biznesim uchun nima qila olasiz?",
+        answer:
+          "Saytlar, veb-servislar — shaxsiy kabinetlar va ichki tizimlar — va takroriy ishlarni avtomatlashtirish. Mahsulotning birinchi versiyasidan mavjudini rivojlantirishgacha.",
+      },
+      {
+        question: "Sayt yoki veb-servis qancha turadi?",
+        answer:
+          "Narx hajm va funksiyalarga bog'liq. Qisqa suhbatdan keyin aniq ishlar ro'yxati bilan qat'iy smeta yuboraman — soatbay kutilmagan to'lovlarsiz.",
+      },
+      {
+        question: "Loyiha qancha vaqt oladi?",
+        answer:
+          "Landing odatda bir-ikki hafta, veb-servis yoki avtomatlashtirish — to'rt haftadan boshlab. Har hafta natijani ko'rasiz.",
+      },
+      {
+        question: "Masofadan ishlaysizmi?",
+        answer:
+          "Ha. Men O'sh, Qirg'izistondaman va mijozlar bilan mahalliy hamda butun dunyo bo'ylab masofadan ishlayman. O'zbek, rus, qirg'iz va ingliz tillarida gaplashaman.",
+      },
+      {
+        question: "Qanday texnologiyalardan foydalanasiz?",
+        answer:
+          "Frontend — Next.js, React va TypeScript. Backend — PostgreSQL, Supabase yoki Firebase bilan Node.js. Interfeys — Tailwind CSS.",
+      },
+      {
+        question: "Ishni qanday boshlaymiz?",
+        answer:
+          "Telegram yoki email orqali yozib, vazifani tushuntiring. Qisqa suhbat o'tkazamiz, keyin hajm, muddat va narx bilan taklif yuboraman.",
+      },
     ],
   },
   contact: {

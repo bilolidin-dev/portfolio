@@ -18,7 +18,7 @@ The site is **fully static**: `next build` exports every page to `out/`, and a C
 - **Pulse-flow animation** on architecture diagrams
 - **Two-way theme toggle** (Light / Dark, initial value follows `prefers-color-scheme`) with View Transitions API ripple effect
 - **Fully typed** with strict TypeScript
-- **SEO-ready**: Open Graph, Twitter Cards, JSON-LD structured data, sitemap, robots.txt
+- **SEO-ready**: per-language titles/descriptions with services and location, a localized FAQ, Open Graph, Twitter Cards, JSON-LD (`Person` + `ProfessionalService` + `WebSite` + `WebPage` + `FAQPage`), sitemap, robots.txt and `llms.txt`
 - **Error/NotFound pages** with graceful fallbacks (a branded `404.html` with `noindex`)
 - **PWA-ready** manifest.json + dynamic favicon/OG image generation
 
@@ -73,6 +73,8 @@ npm start              # serves out/ on http://127.0.0.1:3000 (PORT/HOST respect
 ```bash
 # .env.local
 NEXT_PUBLIC_SITE_URL=https://your-domain.com      # Optional: overrides the default https://www.bilolidin.dev
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=...          # Optional: <meta> token from Google Search Console
+NEXT_PUBLIC_YANDEX_VERIFICATION=...               # Optional: <meta> token from Yandex Webmaster
 ```
 
 **This is a build-time value.** Because the site is a static export, the URL is

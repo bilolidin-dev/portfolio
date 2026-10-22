@@ -3,9 +3,12 @@ import type { UiDictionary } from "@/i18n/types";
 export const en = {
   locale: "en",
   meta: {
-    title: "Bilolidin — Digital Product Developer",
+    // Titles and descriptions carry the services and the location because
+    // they are the only text search engines see on the result page. Keep the
+    // title under ~60 characters and the description under ~160.
+    title: "Bilolidin — Web Developer in Kyrgyzstan: Sites & Automation",
     description:
-      "I build and grow digital products for business: websites, web services and automation — from idea to launch.",
+      "Websites, web services and automation for business — from idea to launch. Based in Osh, Kyrgyzstan, working remotely worldwide. Fixed quote after a short call.",
   },
   nav: {
     services: "Services", process: "Process", about: "About", contact: "Contact",
@@ -60,6 +63,42 @@ export const en = {
       { title: "Businesses", description: "Need a website, a service or automation to win more clients and spend less time on routine." },
       { title: "Founders", description: "Have an idea — I'll help turn it into a first working version and launch it." },
       { title: "Companies", description: "I'll strengthen your team and help grow an existing product." },
+    ],
+  },
+  faq: {
+    label: "FAQ",
+    title: "Frequently asked questions",
+    items: [
+      {
+        question: "What can you build for my business?",
+        answer:
+          "Websites, web services such as client portals and internal tools, and automation that removes routine work — from the first version of a product to growing one that already exists.",
+      },
+      {
+        question: "How much does a website or a web service cost?",
+        answer:
+          "The price depends on scope and features. After a short call I send a fixed quote with a clear list of what is included, so there are no hourly surprises later.",
+      },
+      {
+        question: "How long does a project take?",
+        answer:
+          "A landing page usually takes one to two weeks; a web service or an automation project starts at four weeks. You see progress every week.",
+      },
+      {
+        question: "Do you work remotely?",
+        answer:
+          "Yes. I am based in Osh, Kyrgyzstan, and work with clients locally and remotely worldwide. I speak English, Russian, Uzbek and Kyrgyz.",
+      },
+      {
+        question: "Which technologies do you use?",
+        answer:
+          "Next.js, React and TypeScript on the front end; Node.js with PostgreSQL, Supabase or Firebase on the back end; Tailwind CSS for the interface.",
+      },
+      {
+        question: "How do we start?",
+        answer:
+          "Message me on Telegram or by email and describe the task. We have a short call, then I send a proposal with scope, timeline and price.",
+      },
     ],
   },
   contact: {

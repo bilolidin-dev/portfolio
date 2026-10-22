@@ -1,0 +1,42 @@
+# Bilolidin — Digital Product Developer
+
+> Bilolidin is a full-stack developer based in Osh, Kyrgyzstan. He builds and
+> grows digital products for business: websites, web services (client portals,
+> internal tools) and automation — from the first version to an existing product.
+
+## Services
+
+- Websites: a site that explains the business clearly and brings in clients.
+- Web services: client portals, online services and internal tools.
+- Automation: requests, spreadsheets, notifications and reports run on their own.
+- New products: a fast first version to test an idea with real people.
+- Product growth: improving, extending and moving an existing product forward.
+
+## Facts
+
+- Location: Osh, Kyrgyzstan. Works locally and remotely worldwide.
+- Languages: English, Russian, Uzbek, Kyrgyz, Spanish.
+- Stack: Next.js, React, TypeScript, Tailwind CSS, Node.js, PostgreSQL, Supabase, Firebase.
+- Engagement: short call, then a proposal with fixed scope, timeline and price.
+- Typical timeline: a landing page in one to two weeks, a web service from four weeks.
+
+## Contact
+
+- Telegram: https://t.me/bilolidindev
+- Email: bilolmen998@gmail.com
+- Instagram: https://www.instagram.com/bilolidin.dev/
+- GitHub: https://github.com/bilolidin-dev
+
+## Pages
+
+- [English](https://www.bilolidin.dev/): default language.
+- [Русский](https://www.bilolidin.dev/ru)
+- [O'zbekcha](https://www.bilolidin.dev/uz)
+- [Ўзбекча](https://www.bilolidin.dev/uz-cyrl)
+- [Кыргызча](https://www.bilolidin.dev/ky)
+- [Español](https://www.bilolidin.dev/es)
+
+## Optional
+
+- [Sitemap](https://www.bilolidin.dev/sitemap.xml)
+- [FAQ in English](https://www.bilolidin.dev/#faq)

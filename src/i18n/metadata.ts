@@ -15,6 +15,20 @@ function alternateOgLocales(locale: Locale): string[] {
   return [...new Set(locales.map(openGraphLocale))].filter((item) => item !== own);
 }
 
+/**
+ * Search-console tokens are build-time values: put them in the build
+ * environment (Vercel → Settings → Environment Variables) and the `<meta>`
+ * verification tag appears on every page of the next build.
+ */
+const verification = {
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+    : {}),
+  ...(process.env.NEXT_PUBLIC_YANDEX_VERIFICATION
+    ? { yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION }
+    : {}),
+};
+
 /** Root-layout metadata shared by the prefix-free default locale and the `/{locale}` trees. */
 export function rootMetadata(locale: Locale): Metadata {
   const { title: siteTitle, description: siteDescription } = getDictionary(locale).meta;
@@ -29,6 +43,7 @@ export function rootMetadata(locale: Locale): Metadata {
       index: true,
       follow: true,
     },
+    ...(Object.keys(verification).length > 0 ? { verification } : {}),
     icons: {
       icon: "/icon",
     },

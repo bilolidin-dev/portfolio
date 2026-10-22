@@ -7,6 +7,7 @@ import { Services } from "@/components/home/Services";
 import { Process } from "@/components/home/Process";
 import { About } from "@/components/home/About";
 import { Audience } from "@/components/home/Audience";
+import { Faq } from "@/components/home/Faq";
 import { Contact } from "@/components/home/Contact";
 
 export function getMetadata(locale: Locale): Metadata {
@@ -31,6 +32,7 @@ export default function HomeView({ locale }: { locale: Locale }) {
       <Process d={d} />
       <About d={d} />
       <Audience d={d} />
+      <Faq d={d} />
       <Contact d={d} />
     </div>
   );

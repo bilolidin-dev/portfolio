@@ -6,7 +6,7 @@ import { LanguagePrompt } from "@/components/layout/LanguagePrompt";
 import { themeScript } from "@/components/layout/theme-script";
 import { siteUrl } from "@/data/site";
 import { contact } from "@/data/contact";
-import { htmlLang, type Locale } from "@/i18n/config";
+import { htmlLang, localePath, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n";
 
 const inter = Inter({
@@ -35,24 +35,109 @@ export function SiteShell({
   locale: Locale;
   children: React.ReactNode;
 }) {
+  const d = getDictionary(locale);
+  const pageUrl = `${siteUrl}${localePath("/", locale)}`;
+  const sameAs = [contact.instagram, contact.telegram, contact.github];
+  // Entity graph shared by every locale: the person, the one service he sells
+  // and the page itself. Search engines and AI answer engines use it to decide
+  // what the site is about and where the work happens.
+  const personId = `${siteUrl}/#person`;
+  const serviceId = `${siteUrl}/#service`;
+  const address = {
+    "@type": "PostalAddress",
+    addressLocality: "Osh",
+    addressCountry: "KG",
+  };
+  const languages = ["en", "ru", "uz", "ky", "es"];
+
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": personId,
     name: "Bilolidin",
     jobTitle: "Digital Product Developer",
-    description: getDictionary(locale).meta.description,
-    url: siteUrl,
+    description: d.meta.description,
+    url: pageUrl,
+    image: `${siteUrl}/opengraph-image`,
     email: `mailto:${contact.email}`,
-    inLanguage: htmlLang[locale],
-    sameAs: [contact.instagram, contact.telegram, contact.github],
+    address,
+    knowsLanguage: languages,
+    knowsAbout: [
+      "Web development",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Web services",
+      "Business process automation",
+    ],
+    sameAs,
+  };
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": serviceId,
+    name: "Bilolidin — Digital Product Developer",
+    url: pageUrl,
+    image: `${siteUrl}/opengraph-image`,
+    description: d.meta.description,
+    email: `mailto:${contact.email}`,
+    founder: { "@id": personId },
+    address,
+    // Local work in Kyrgyzstan, remote work everywhere else.
+    areaServed: [
+      { "@type": "Country", name: "Kyrgyzstan" },
+      { "@type": "Country", name: "Uzbekistan" },
+      { "@type": "Country", name: "Kazakhstan" },
+      { "@type": "Country", name: "Russia" },
+      { "@type": "Place", name: "Worldwide" },
+    ],
+    knowsLanguage: languages,
+    sameAs,
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: d.services.title,
+      itemListElement: d.services.items.map((item, index) => ({
+        "@type": "Offer",
+        position: index + 1,
+        itemOffered: { "@type": "Service", name: item.title, description: item.description },
+      })),
+    },
   };
 
   const webSiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteUrl}/#website`,
     name: "Bilolidin — Digital Product Developer",
-    url: siteUrl,
+    url: pageUrl,
     inLanguage: htmlLang[locale],
+    publisher: { "@id": personId },
+  };
+
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: d.meta.title,
+    description: d.meta.description,
+    inLanguage: htmlLang[locale],
+    isPartOf: { "@id": `${siteUrl}/#website` },
+    about: { "@id": serviceId },
+    mainEntity: { "@id": serviceId },
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
+    inLanguage: htmlLang[locale],
+    mainEntity: d.faq.items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
   };
 
   return (
@@ -65,7 +150,15 @@ export function SiteShell({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify([personSchema, webSiteSchema]) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              personSchema,
+              serviceSchema,
+              webSiteSchema,
+              webPageSchema,
+              faqSchema,
+            ]),
+          }}
         />
         <ThemeProvider>
           <div className="flex min-h-screen flex-col">

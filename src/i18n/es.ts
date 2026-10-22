@@ -3,9 +3,9 @@ import type { UiDictionary } from "@/i18n/types";
 export const es = {
   locale: "es",
   meta: {
-    title: "Bilolidin — Digital Product Developer",
+    title: "Bilolidin — desarrollo web y automatización para empresas",
     description:
-      "Creo y hago crecer productos digitales para empresas: sitios web, servicios web y automatización — de la idea al lanzamiento.",
+      "Creo sitios web, servicios web y automatización para empresas, de la idea al lanzamiento. Desde Osh, Kirguistán, trabajo en remoto para todo el mundo.",
   },
   nav: {
     services: "Servicios", process: "Proceso", about: "Sobre mí", contact: "Contacto",
@@ -60,6 +60,42 @@ export const es = {
       { title: "Empresas", description: "Necesitas un sitio, un servicio o automatización para ganar más clientes y perder menos tiempo." },
       { title: "Fundadores", description: "¿Tienes una idea? Te ayudo a convertirla en una primera versión funcional y lanzarla." },
       { title: "Compañías", description: "Refuerzo tu equipo y ayudo a hacer crecer un producto existente." },
+    ],
+  },
+  faq: {
+    label: "Preguntas",
+    title: "Preguntas frecuentes",
+    items: [
+      {
+        question: "¿Qué puedes construir para mi negocio?",
+        answer:
+          "Sitios web, servicios web como áreas de clientes y sistemas internos, y automatización que elimina el trabajo repetitivo: desde la primera versión de un producto hasta hacer crecer uno que ya existe.",
+      },
+      {
+        question: "¿Cuánto cuesta un sitio web o un servicio web?",
+        answer:
+          "El precio depende del alcance y las funciones. Tras una llamada breve envío un presupuesto cerrado con la lista de lo que incluye, sin sorpresas por horas.",
+      },
+      {
+        question: "¿Cuánto tarda un proyecto?",
+        answer:
+          "Una landing suele tardar de una a dos semanas; un servicio web o un proyecto de automatización, a partir de cuatro. Verás el avance cada semana.",
+      },
+      {
+        question: "¿Trabajas en remoto?",
+        answer:
+          "Sí. Estoy en Osh, Kirguistán, y trabajo con clientes en persona y en remoto para todo el mundo. Hablo español, ruso, uzbeko, kirguís e inglés.",
+      },
+      {
+        question: "¿Qué tecnologías usas?",
+        answer:
+          "Next.js, React y TypeScript en el frontend; Node.js con PostgreSQL, Supabase o Firebase en el backend; Tailwind CSS para la interfaz.",
+      },
+      {
+        question: "¿Cómo empezamos?",
+        answer:
+          "Escríbeme por Telegram o correo y cuéntame la tarea. Hacemos una llamada breve y después envío una propuesta con alcance, plazos y precio.",
+      },
     ],
   },
   contact: {
